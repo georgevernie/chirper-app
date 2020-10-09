@@ -1,63 +1,88 @@
 import React from "react";
 import {Component} from "react";
-import checkTime from "./cardTime";
+import Nav from "./nav-bar";
+import Chirp from "./chirp";
 
 //Typescript
 interface ChirpsProps {
   name?: string;
   city?: string;
+  createChirpLoaded?: Boolean;
+  homePageLoaded?: Boolean;
+  editChirpLoaded?: Boolean; 
+  loaded?:Boolean;
+  hasLoaded?:Boolean;
+}
+interface StateLoaded{
+  createChirpLoaded?: Boolean;
+  homePageLoaded?: Boolean;
+  editChirpLoaded?: Boolean; 
+  loaded?: Boolean;
   hasLoaded?: Boolean;
-  onChange?: string;
 }
 
-class Chirps extends Component{
-    render() {
-      checkTime(); // Going to be used to check when a card was posted.
-        return(
-          <div className="container-fluid">
-              <div className="mt-3 d-flex justify-content-center row">
-                <div className="card w-50">
-                  <div className="card-header">sometime ago</div>
-                  <div className="card-body">
-                    <h5 className="card-title">Crazy Frog</h5>
-                    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <button className="btn btn-primary">Edit Chirp</button>
-                  </div>
-                </div>
+
+class Chirps extends Component<ChirpsProps, StateLoaded>{
+  constructor(props: ChirpsProps){
+    super(props);
+    this.state = {
+      loaded: false,
+      hasLoaded:false,
+      createChirpLoaded:false,
+      homePageLoaded:true,
+      editChirpLoaded:false,
+    };
+     this.goHome = this.goHome.bind(this);
+     this.makeAChirp = this.makeAChirp.bind(this);
+  }
+  goHome(){
+    console.log("Howdy.");
+  }
+
+  makeAChirp(){
+    this.setState({
+      loaded: true,
+      //hasLoaded: true
+    });
+  }
+
+  render() {
+      if(this.state.homePageLoaded === true){  
+          return(
+              <div>
+                <Nav loaded={false} hasLoaded={false}/>
+                <Chirp name={"Sabra"} post= {"Neon lights are beautiful!"} loaded={false}></Chirp>
+                <Chirp name={"Mathew"} post= "Always remember your zip code..." loaded={false}></Chirp>
+                <Chirp name={"Steve"} post= "GOOOAAATTTTSSSS!!!!!!" loaded={false}></Chirp>
+              </div>   
+            );
+        }
+        else if(this.state.createChirpLoaded === true){
+           return( 
+              <div>
+              <div className="card text-center">
+                      <form>     
+                          <label htmlFor="fname">Name</label>
+                          <input type="text" id="fname" name="fname"></input>
+                          <label htmlFor="lname">Chirp</label>
+                          <input type="text" id="lname" name="lname"></input>
+                          <input type="button" value="Chirp It!"></input>
+                      </form>       
               </div>
-              <div className="mt-3 d-flex justify-content-center row">
-                <div className="card w-50">
-                  <div className="card-header">little while ago</div>
-                  <div className="card-body">
-                    <h5 className="card-title">Henry The Dragon Slayer</h5>
-                    <p className="card-text">Waiting for a worthy opponent...</p>
-                    <button className="btn btn-primary">Edit Chirp</button>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3 d-flex justify-content-center row row-lg">
-                <div className="card w-50">
-                  <div className="card-header"> A few seconds ago</div>
-                  <div className="card-body">
-                    <h5 className="card-title">T-Rex 17</h5>
-                    <p className="card-text">All shall fall before me!</p>
-                    <button className="btn btn-primary">Edit Chirp</button>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-3 d-flex justify-content-center row">
-                <div className="card w-50">
-                  <div className="card-header">little while ago</div>
-                  <div className="card-body">
-                    <h5 className="card-title">Henry The Dragon Slayer</h5>
-                    <p className="card-text">Come at me @T-Rex 17!</p>
-                    <button className="btn btn-primary">Edit Chirp</button>
-                  </div>
-                </div>
-              </div>
-            </div>   
-        );
-      } 
+            </div>
+           );
+        }
+        else if(this.state.editChirpLoaded === true){
+          return(
+            <div>CHIRP TO EDIT MON.</div>
+          );
+        }
+        else{
+          return(
+            <div>ERRONOUS ROUTE!</div>
+          );
+        }  
+    } 
 }
 
 export default Chirps;
