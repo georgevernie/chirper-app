@@ -2,86 +2,90 @@ import React from "react";
 import {Component} from "react";
 import Nav from "./nav-bar";
 import Chirp from "./chirp";
-
-//Typescript
-interface ChirpsProps {
-  name?: string;
-  city?: string;
-  createChirpLoaded?: Boolean;
-  homePageLoaded?: Boolean;
-  editChirpLoaded?: Boolean; 
-  loaded?:Boolean;
-  hasLoaded?:Boolean;
-}
-interface StateLoaded{
-  createChirpLoaded?: Boolean;
-  homePageLoaded?: Boolean;
-  editChirpLoaded?: Boolean; 
-  loaded?: Boolean;
-  hasLoaded?: Boolean;
-}
-
+import {ChirpsProps} from "./globalTypes";
+import {StateLoaded} from "./globalTypes";
 
 class Chirps extends Component<ChirpsProps, StateLoaded>{
   constructor(props: ChirpsProps){
     super(props);
     this.state = {
-      loaded: false,
-      hasLoaded:false,
-      createChirpLoaded:false,
-      homePageLoaded:true,
+      createChirpLoaded:true,
+      homePageLoaded:false,
       editChirpLoaded:false,
     };
      this.goHome = this.goHome.bind(this);
      this.makeAChirp = this.makeAChirp.bind(this);
+     this.editAChirp = this.editAChirp.bind(this);
   }
   goHome(){
-    console.log("Howdy.");
+    this.setState({
+      homePageLoaded:true,
+      createChirpLoaded:false,
+      editChirpLoaded:false,
+    });
   }
-
   makeAChirp(){
     this.setState({
-      loaded: true,
-      //hasLoaded: true
+      homePageLoaded:false,
+      createChirpLoaded:true,
+    });
+  }
+  editAChirp(){
+    this.setState({
+      homePageLoaded:false,
+      createChirpLoaded:false,
+      editChirpLoaded:true,
     });
   }
 
   render() {
       if(this.state.homePageLoaded === true){  
-          return(
-              <div>
-                <Nav loaded={false} hasLoaded={false}/>
-                <Chirp name={"Sabra"} post= {"Neon lights are beautiful!"} loaded={false}></Chirp>
-                <Chirp name={"Mathew"} post= "Always remember your zip code..." loaded={false}></Chirp>
-                <Chirp name={"Steve"} post= "GOOOAAATTTTSSSS!!!!!!" loaded={false}></Chirp>
+        //Home Page...  
+        return(
+               <div> 
+                 <Nav></Nav>
+                <Chirp name={"Sabra"} post= {"Neon lights are beautiful!"}></Chirp>
+                <Chirp name={"Mathew"} post= "Always remember your zip code..."></Chirp>
+                <Chirp name={"Steve"} post= "GOOOAAATTTTSSSS!!!!!!"></Chirp>
               </div>   
             );
         }
+        //Chirp Creator Loads Chirps Creator Component, and Nav Bar.
         else if(this.state.createChirpLoaded === true){
            return( 
-              <div>
-              <div className="card text-center">
-                      <form>     
-                          <label htmlFor="fname">Name</label>
-                          <input type="text" id="fname" name="fname"></input>
-                          <label htmlFor="lname">Chirp</label>
-                          <input type="text" id="lname" name="lname"></input>
-                          <input type="button" value="Chirp It!"></input>
-                      </form>       
+            <div>
+              <Nav></Nav> 
+              <div className="col card text-center">
+              <h3>Make A Chirp:</h3>
+                    <form>     
+                        <label htmlFor="fname">Name</label>
+                        <input className="col bg-light" type="text" id="fname" name="fname"></input>
+                        <label htmlFor="lname">Chirp</label>
+                        <input className="col bg-light" type="text" id="lname" name="lname"></input>
+                        <input className="col btn btn-primary" type="button" value="Chirp It!"></input>
+                    </form>       
               </div>
-            </div>
+          </div>
            );
         }
+        //Chirp Editor loads admin component.
         else if(this.state.editChirpLoaded === true){
           return(
-            <div>CHIRP TO EDIT MON.</div>
+            <div>
+            <Nav></Nav> 
+            <div className="col card text-center">
+              <h3>Edit Chirp:</h3>
+                  <form>     
+                      <label htmlFor="fname">Name</label>
+                      <input className="col bg-light" type="text" id="fname" name="fname"></input>
+                      <label htmlFor="lname">Chirp</label>
+                      <input className="col bg-light" type="text" id="lname" name="lname"></input>
+                      <input className="col btn btn-primary" type="button" value="Submit Changes"></input>
+                  </form>       
+            </div>
+        </div>
           );
         }
-        else{
-          return(
-            <div>ERRONOUS ROUTE!</div>
-          );
-        }  
     } 
 }
 
