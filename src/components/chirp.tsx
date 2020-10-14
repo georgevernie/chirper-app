@@ -5,16 +5,16 @@ let timer: number = 0;
 let postTime = "Posted a few seconds ago...";
 
 interface ChirpComponent{
-    name?: String;
-    post?: String;
-    loaded?: Boolean;
+    name: String;
+    post: String;
+    method: any;
 }
 
-interface stateComponent{
-    loaded?: Boolean;
+interface ChirpLoaded{
+    loaded: Boolean;
 }
 
-class Chirp extends Component<ChirpComponent, stateComponent>{
+class Chirp extends Component<ChirpComponent, ChirpLoaded>{
     constructor(props:ChirpComponent){
         super(props);
         this.state = {
@@ -34,18 +34,17 @@ class Chirp extends Component<ChirpComponent, stateComponent>{
           });
     }
     render(){
+        const {post, name, method} = this.props;
         return(
             <div className="card text-center">
                 <div className="card-header text-muted">{postTime}</div>
                 <div className="card-body">
-                <h5 className="card-title">{this.props.name}</h5>
-                <p className="card-text">{this.props.post}</p>
-                <button className="col btn btn-primary">Edit Component</button>
+                <h5 className="card-title">{name}</h5>
+                <p className="card-text">{post}</p>
+                <button onClick={method} className="col btn btn-primary">Edit Component</button>
                 </div>
             </div>
             );
-        
-        
     }
 } 
 
