@@ -1,28 +1,15 @@
 import React from "react";
-import {Component} from "react";
 
-interface NavProps{
-  goHome: any;
-  createAChirp: any;
+const NavBar = (props: any) => {
+    return (
+        <div className="container-fluid">
+        <div className="row">
+        <button onClick={props.goHome} className="col btn-lg font-weight-bolder color-acc-light-brown">Chirper Home</button>
+        <button onClick={props.chirpCreator} className="col btn-lg font-weight-bolder color-acc-light-brown">Create a Chirp</button>
+        </div>
+    </div>  
+
+    );
 }
 
-class Nav extends Component<NavProps>{
-   constructor(props: NavProps){
-     super(props);
-
-   } 
-  
-  render() {
-      const {goHome, createAChirp} = this.props;
-          return(
-            <div className="container-fluid">
-            <div className="row">
-              <button onClick={goHome} className="col btn btn-primary">Chirper Home</button>
-              <button onClick={createAChirp} className="col btn btn-primary">Create a Chirp</button>
-            </div>
-            </div> 
-          );
-      } 
-}
-
-export default Nav;
+export default NavBar;

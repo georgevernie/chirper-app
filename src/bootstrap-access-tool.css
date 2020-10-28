@@ -1,0 +1,39 @@
+/*
+    These background choices are intended to fix the bootstrap accessiblity problem and to change the color contrast
+    of styles to 8.0 or higher when using font-acc-light or font-acc-dark fonts.
+*/
+
+.font-acc-light{color:#ffffff;} /*Used for dark colors*/
+.font-acc-dark{color:#000000;}  /*Used for light colors*/
+
+/*Contrast num only applies with .font-acc-light*/
+.color-acc-light-red{background:#972222;color:#ffffff;}          /*Contrast 8.18 */
+.color-acc-light-brown{background:#5C3822;color:#ffffff;}        /*Contrast 10.27*/
+.color-acc-light-green{background:#235C13;color:#ffffff;}        /*Contrast 8.04*/  
+.color-acc-light-teal{background:#055857;color:#ffffff;}         /*Contrast 8.27*/
+.color-acc-light-blue{background:#004F90;color:#ffffff;}         /*Contrast 8.33*/
+.color-acc-light-darkgreen{background:#044803;color:#ffffff;}    /*Contrast 10.86*/
+.color-acc-light-purple{background:#7C137E;color:#ffffff;}       /*Contrast 9.33*/
+.color-acc-light-black{background:#242424;color:#ffffff;}        /*Contrast 15.52*/
+
+/*Contrast num only applies with .font-acc-dark*/
+.color-acc-dark-orange{background:#FD8B00;color:#000000;}          /*Contrast 8.87*/
+.color-acc-dark-red{background: #FA7B7B;color:#000000;}           /*Contrast: 8.18*/
+.color-acc-dark-yellow{background: #F4DD2E;color:#000000;}        /*Contrast 15.23*/
+.color-acc-dark-green{background:#77DA74;color:#000000;}           /*Contrast 12.07*/
+.color-acc-dark-sky{background:#56EBDF;color:#000000;}             /*Contrast 14.34*/
+.color-acc-dark-blue{background:#26BAEB;color:#000000;}            /*Contrast 9.31*/ 
+.color-acc-dark-pink{background: #F18CD5;color:#000000;}           /*Contrast 9.45*/
+.color-acc-dark-white{background:#F8F9FA;color:#000000;}           /*Contrast 19.92*/
+
+/* additional btn sizes */
+.btn-huge{
+    padding: 1.5rem 3rem;
+    font-size: 1.5rem;
+    border: none;
+}
+.btn-monster{
+    padding: 2rem 6rem;
+    font-size: 2rem;
+    border: none;
+}
