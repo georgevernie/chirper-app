@@ -75,10 +75,10 @@ class App extends Component {
         if (chirpCreatorLoaded === true) {
             return (
                 <div>
-                    <div className="color-acc-dark-blue">
+                    <div className="color-acc-sky">
                         <NavBar goHome={this.homePage} chirpCreator={this.chirpCreator}></NavBar>
                     </div>
-                    <div className="color-acc-dark-blue">
+                    <div className="color-acc-sky">
                         <ChirpCreator addAChirp={this.addChirp} newChirpHandler={this.newChirpInputHandler}></ChirpCreator>
                     </div>
                 </div>
